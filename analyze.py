@@ -140,13 +140,3 @@ def unpickle(traceFileName, quantity):
 
 if __name__ == "__main__":
     main()
-
-    
-# To-do list Thursday:
-    
-    #   Have your GitHub repo ready
-    
-    #   Load image at 1 second
-    #   Try loading video and audio; with and without autoplay
-    #   Try out different DOM element counts
-    #   Nail down your definition of "fingerprint uniqueness"; think of a rigorous mathematical way to measure it. 
