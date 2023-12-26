@@ -1,4 +1,4 @@
-This repository contains all the materials used in my project for the Maine State Science Fair. 
+This repository contains all the materials used in my project for the 2024 Maine State Science Fair. I sought to complement Jack Cook et. al's work (jackcook.github.io/bigger-fish/) on a system-interrupt-based side-channel attack capable of fingerprinting websites by researching the relationship between a site's fingerprint (as built by the attack) and its content and features.
 
 The Python files cross.py, analyze.py, and subtract.py open up traces from the Chrome, Firefox, and Safair folders and plot them using matplotlib.
-The plots folder contains screenshots of preliminary (testing) and real (experimentally relevant) plots.
+The plots folder contains screenshots of preliminary (testing) and real (experimentally relevant) plots. The pages folder contains the web pages used to run experiments on different website contents and features.
