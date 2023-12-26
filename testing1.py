@@ -1,10 +1,7 @@
-# Write a program that:
-    # FIRST: Takes in two or more pkl trace files, and gives you a scatter plot and a box plot. 
-    # SECOND: Takes in the adress of a directory, and plots all the data in the pkl files in this directory. 
+# Testing a script that iterates through the pickle trace file until it reaches the end of the file (EOFError). 
 
 from sys import argv, exit
 import matplotlib.pyplot as plt
-import numpy as np
 import pickle
 
 
