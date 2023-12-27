@@ -5,7 +5,7 @@ from scipy.stats import sem
 import matplotlib.pyplot as plt
 
 #   This script plots two averaged traces and their difference trace (subtracts the traces).
-#   COMMAND-LINE ARGUMENTS: python subtract.py path1 path2 trace_length 
+#   COMMAND-LINE ARGUMENTS: python subtract.py path1 path2 plot_type trace_length 
 
 def main():
 
@@ -106,9 +106,9 @@ def unpickle(traceFileName):
             traceSet.append(trace[0])
             numRuns += 1
         except EOFError:
-            break
-        traceFileHandle.close()
-        return traceSet, site, numRuns
+            break    
+    traceFileHandle.close()
+    return traceSet, site, numRuns
 
 if __name__ == "__main__":
     main()
