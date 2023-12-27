@@ -9,10 +9,12 @@ import matplotlib.pyplot as plt
 
 def main():
 
-    if len(argv) != 4:
-        exit("Usage: python subtract.py [path1] [path2] [trace_length]")
+    if len(argv) != 5:
+        exit("Usage: python subtract.py [path1] [path2] [plot_type] [trace_length]")
     
     paths = [argv[1], argv[2]]
+    plotType = argv[3]
+    traceLength = int(argv[4])
 
     for path in paths:
         try:
@@ -22,9 +24,8 @@ def main():
             exit(f"{path} was not found.")
 
     # Parameters for the plot
-    traceLength = int(argv[3])
     timeAxis = range(traceLength * 1000)
-    infoTag = f"Average difference trace: '{formattedName(paths[1])}' - '{formattedName(paths[0])}' - {traceLength} seconds"
+    infoTag = f"Average difference trace ({plotType}): '{formattedName(paths[1])}' - '{formattedName(paths[0])}' - {traceLength} seconds"
 
     # Plot two original traces and save their average traces in list for later use
     averagedTraces = []
@@ -32,13 +33,24 @@ def main():
         traceSet, site, numRuns = unpickle(path)
         averagedTrace = averager(traceSet)
         averagedTraces.append(averagedTrace)
-        plt.plot(timeAxis, averagedTrace, label=formattedName(site))
         descriptors(averagedTrace, site)
 
-    # Plot difference trace and print descriptors
+        # Choose desired plot (scatter or line)
+        if plotType == "line":
+            plt.plot(timeAxis, averagedTrace, label=formattedName(site))
+        
+        if plotType == "scatter":
+            plt.scatter(timeAxis, averagedTrace, s=2, label=formattedName(site))
+
+    # Plot desired difference trace and print descriptors
     differenceTrace = subtractTraces(averagedTraces[0], averagedTraces[1])
-    plt.plot(timeAxis, differenceTrace, label="Difference", color="green")
     descriptors(differenceTrace, f"Difference between {formattedName(paths[1])} and {formattedName(paths[0])}")
+
+    if plotType == "line":
+        plt.plot(timeAxis, differenceTrace, label="Difference", color="green")
+    
+    if plotType == "scatter":
+        plt.scatter(timeAxis, differenceTrace, s=2, label="Difference", color="green")
 
     # Plot's features and labels
     plt.xlabel("Time (ms)")
