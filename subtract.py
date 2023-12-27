@@ -25,7 +25,9 @@ def main():
 
     # Parameters for the plot
     timeAxis = range(traceLength * 1000)
-    infoTag = f"Average difference trace ({plotType}): '{formattedName(paths[1])}' - '{formattedName(paths[0])}' - {traceLength} seconds"
+    pageName2 = formattedName(paths[1]).split("_")[-1]
+    pageName1 = formattedName(paths[0]).split("_")[-1]
+    infoTag = f"Average difference trace ({plotType}): '{pageName2}' - '{pageName1}' - {traceLength} seconds"
 
     # Plot two original traces and save their average traces in list for later use
     averagedTraces = []
@@ -47,16 +49,16 @@ def main():
     descriptors(differenceTrace, f"Difference between {formattedName(paths[1])} and {formattedName(paths[0])}")
 
     if plotType == "line":
-        plt.plot(timeAxis, differenceTrace, label="Difference", color="green")
+        plt.plot(timeAxis, differenceTrace, label="difference", color="green")
     
     if plotType == "scatter":
-        plt.scatter(timeAxis, differenceTrace, s=2, label="Difference", color="green")
+        plt.scatter(timeAxis, differenceTrace, s=2, label="difference", color="green")
 
     # Plot's features and labels
     plt.xlabel("Time (ms)")
     plt.ylabel("Averaged counter values")
     plt.title(infoTag + f" - {numRuns} run(s)")
-    plt.legend(loc="lower right")
+    plt.legend(loc="right")
     plt.grid("both")
 
     plt.show()
