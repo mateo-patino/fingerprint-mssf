@@ -39,10 +39,10 @@ def main():
 
         # Choose desired plot (scatter or line)
         if plotType == "line":
-            plt.plot(timeAxis, averagedTrace, label=formattedName(site))
+                plt.plot(timeAxis, averagedTrace, label=formattedName(site))
         
         if plotType == "scatter":
-            plt.scatter(timeAxis, averagedTrace, s=2, label=formattedName(site))
+            plt.scatter(timeAxis, averagedTrace, s=5, label=formattedName(site))
 
     # Plot desired difference trace and print descriptors
     differenceTrace = subtractTraces(averagedTraces[0], averagedTraces[1])
