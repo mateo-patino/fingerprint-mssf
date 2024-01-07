@@ -1,4 +1,5 @@
 This repository contains all the materials used in my project for the 2024 Maine State Science Fair. I sought to complement Jack Cook et. al's work (jackcook.github.io/bigger-fish/) on a system-interrupt-based side-channel attack capable of fingerprinting websites by researching the relationship between a site's fingerprint (as built by the attack) and its content and features.
 
-The Python files cross.py, analyze.py, and subtract.py open up traces from the Chrome, Firefox, and Safair folders and plot them using matplotlib.
-The plots folder contains screenshots of preliminary (testing) and real (experimentally relevant) plots. The pages folder contains the web pages used to run experiments on different website contents and features.
+The Python files cross.py, analyze.py, and subtract.py open up traces from the Chrome, Firefox, and Safair folders and plot them using matplotlib. 'analyze.py' takes one pickle file and plots either the first trace in the file or the average trace of all fingerprints collected. 'cross.py' takes two or more pickle files and plots the averaged traces of all pkl files provided. 'subtract.py' is similar to 'cross.py' but only takes two pickle file paths and plots the averaged trace of these files alongside a difference trace – the trace obtained by subtracting corresponding counter values at each index (assuming both operand traces have the same length).
+
+The plots folder contains screenshots of preliminary (testing) and real (experimentally relevant) plots. The pages folder contains the web pages used to run experiments.
