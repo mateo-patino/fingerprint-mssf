@@ -6,20 +6,13 @@
         <script>
             document.addEventListener('DOMContentLoaded', function (){
 
-                setTimeout(function() { 
-
-                    for (let i = 0; i < 10; i++)
-                    {
-                        let newImage = document.createElement('img');
-                        newImage.src = 'images/image1.jpg';
-                        document.querySelector('body').append(newImage); 
-                    }
-                
-                }, 3000);
+                let imageElement = document.querySelector('img');
+                setTimeout(function() { imageElement.src = 'images/image1.jpg'}, 3000);
                 
             });
         </script>
     </head>
     <body>
+        <img src="">
     </body>
 </html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>onepicdelay</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function (){
+
+                setTimeout(function() { 
+
+                    for (let i = 0; i < 10; i++)
+                    {
+                        let newImage = document.createElement('img');
+                        newImage.src = 'images/image1.jpg';
+                        document.querySelector('body').append(newImage); 
+                    }
+                
+                }, 3000);
+                
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
