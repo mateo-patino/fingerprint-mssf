@@ -5,16 +5,17 @@ from scipy.stats import sem
 import matplotlib.pyplot as plt
 
 #   This script plots two averaged traces and their difference trace (subtracts the traces).
-#   COMMAND-LINE ARGUMENTS: python subtract.py path1 path2 plot_type trace_length 
+#   COMMAND-LINE ARGUMENTS: python subtract.py path1 path2 plot_type trace_length browser 
 
 def main():
 
-    if len(argv) != 5:
-        exit("Usage: python subtract.py [path1] [path2] [plot_type] [trace_length]")
+    if len(argv) != 6:
+        exit("Usage: python subtract.py [path1] [path2] [plot_type] [trace_length] [browser]")
     
     paths = [argv[1], argv[2]]
     plotType = argv[3]
     traceLength = int(argv[4])
+    browser = argv[5].capitalize()
 
     for path in paths:
         try:
@@ -27,7 +28,7 @@ def main():
     timeAxis = range(traceLength * 1000)
     pageName2 = formattedName(paths[1]).split("_")[-1]
     pageName1 = formattedName(paths[0]).split("_")[-1]
-    infoTag = f"Average difference trace ({plotType}): '{pageName2}' - '{pageName1}' - {traceLength} seconds"
+    infoTag = f"Average difference trace ({plotType}): '{pageName2}' - '{pageName1}' - {traceLength} seconds - {browser}"
 
     # Plot two original traces and save their average traces in list for later use
     averagedTraces = []
