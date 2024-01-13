@@ -29,7 +29,7 @@ def main():
     timeAxis = range(traceLength * 1000)
     pageName2 = formattedName(paths[1]).split("_")[-1]
     pageName1 = formattedName(paths[0]).split("_")[-1]
-    infoTag = f"Average difference trace ({plotType}): '{pageName2}' - '{pageName1}' - {traceLength} seconds - {browser}"
+    infoTag = f"Difference trace ({plotType.split('_')[0]}, {plotType.split('_')[1]}): '{pageName2}' - '{pageName1}' - {traceLength} seconds - {browser}"
 
     # Plot two original traces and save their average or median traces in list 'resultingTraces' for later use in line 59. 'resulting' = averaged or median-ed
     resultingTraces = []
@@ -104,6 +104,7 @@ def medianTrace(traceSet):
             valuesAtIndex.append(trace[index])
         medianTrace[index] = median(valuesAtIndex)
         valuesAtIndex.clear() # Empty list for next set of counter values
+
     return medianTrace 
 
 
