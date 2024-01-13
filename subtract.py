@@ -80,6 +80,21 @@ def averager(traceSet):
 
     return averagedTrace
 
+
+def medianTrace(traceSet):
+
+    # Same logic as averager but now the resulting trace is made up of the medians of all counter values at a particular index
+    size = len(traceSet[0])
+    medianTrace = list(range(size))
+
+    # Iterate through all indexes in a trace and append the median of the counter values at each index in all traces. 
+    valuesAtIndex = list()
+    for index in range(size):
+        for trace in traceSet:
+            valuesAtIndex.append(trace[index])
+        medianTrace[index] = median(valuesAtIndex)
+        valuesAtIndex.clear() # Empty list for next set of counter values
+
 def descriptors(trace, filePath):
 
     print()
