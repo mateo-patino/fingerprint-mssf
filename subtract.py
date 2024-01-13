@@ -4,8 +4,9 @@ from statistics import mean, stdev, median
 from scipy.stats import sem
 import matplotlib.pyplot as plt
 
-#   This script plots two averaged traces and their difference trace (subtracts the traces).
+#   This script plots two averaged or median-ed traces and their difference trace (subtracts the traces).
 #   COMMAND-LINE ARGUMENTS: python subtract.py path1 path2 plot_type trace_length browser 
+#   plot_type must be "average_TYPE" or "median_TYPE" to indicate whether to average or median the two input traces
 
 def main():
 
@@ -30,29 +31,38 @@ def main():
     pageName1 = formattedName(paths[0]).split("_")[-1]
     infoTag = f"Average difference trace ({plotType}): '{pageName2}' - '{pageName1}' - {traceLength} seconds - {browser}"
 
-    # Plot two original traces and save their average traces in list for later use
-    averagedTraces = []
+    # Plot two original traces and save their average or median traces in list 'resultingTraces' for later use in line 59. 'resulting' = averaged or median-ed
+    resultingTraces = []
     for path in paths:
+
+        # Retrieve traces, site label, and number of runs from pkl file
         traceSet, site, numRuns = unpickle(path)
-        averagedTrace = averager(traceSet)
-        averagedTraces.append(averagedTrace)
-        descriptors(averagedTrace, site)
+
+        # Average or median traces 
+        if plotType.split("_")[0] == "average":
+            resultingTrace = averager(traceSet)
+
+        elif plotType.split("_")[0] == "median":
+            resultingTrace = medianTrace(traceSet)
+
+        descriptors(resultingTrace, site)
+        resultingTraces.append(resultingTrace)
 
         # Choose desired plot (scatter or line)
-        if plotType == "line":
-                plt.plot(timeAxis, averagedTrace, label=formattedName(site))
+        if plotType.split("_")[1] == "line":
+            plt.plot(timeAxis, resultingTrace, label=formattedName(site))
         
-        if plotType == "scatter":
-            plt.scatter(timeAxis, averagedTrace, s=5, label=formattedName(site))
+        if plotType.split("_")[1] == "scatter":
+            plt.scatter(timeAxis, resultingTrace, s=5, label=formattedName(site))
 
-    # Plot desired difference trace and print descriptors
-    differenceTrace = subtractTraces(averagedTraces[0], averagedTraces[1])
+    # Plot desired difference trace and print descriptors; difference trace was calculated here and not inside the previous for loop because it would've been calculated twice there
+    differenceTrace = subtractTraces(resultingTraces[0], resultingTraces[1])
     descriptors(differenceTrace, f"Difference between {formattedName(paths[1])} and {formattedName(paths[0])}")
 
-    if plotType == "line":
+    if plotType.split("_")[1] == "line":
         plt.plot(timeAxis, differenceTrace, label="difference", color="green")
     
-    if plotType == "scatter":
+    if plotType.split("_")[1] == "scatter":
         plt.scatter(timeAxis, differenceTrace, s=2, label="difference", color="green")
 
     # Plot's features and labels
@@ -94,6 +104,8 @@ def medianTrace(traceSet):
             valuesAtIndex.append(trace[index])
         medianTrace[index] = median(valuesAtIndex)
         valuesAtIndex.clear() # Empty list for next set of counter values
+    return medianTrace 
+
 
 def descriptors(trace, filePath):
 
