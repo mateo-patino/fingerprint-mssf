@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>onepicdelay</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function (){
+
+                let count = 0;
+                const intervalId = setInterval(loadImage, 1000);
+                
+                function loadImage()
+                {
+                    let newImage = document.createElement('img');
+                    newImage.src = 'images/image1.jpg';
+                    document.querySelector('body').append(newImage); 
+                    count++;
+
+                    if (count == 10) { clearInterval(intervalId); }
+                }
+
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
