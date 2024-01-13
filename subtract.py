@@ -67,7 +67,10 @@ def main():
 
     # Plot's features and labels
     plt.xlabel("Time (ms)")
-    plt.ylabel("Averaged counter values")
+    if plotType.split("_")[0] == "average":
+        plt.ylabel("Averaged counter values")
+    elif plotType.split("_")[0] == "median":
+        plt.ylabel("Median counter values")
     plt.title(infoTag + f" - {numRuns} run(s)")
     plt.legend(loc="right")
     plt.grid("both")

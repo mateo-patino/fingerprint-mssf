@@ -53,6 +53,13 @@ def main():
         plt.plot(timeAxis, averager(unpklTrace[0]), color="orange", lw=1)
         average = True
 
+    if plotType == "median_line":
+        plt.plot(timeAxis, medianTrace(unpklTrace[0]), color="orange", lw=1)
+        plt.title("Median trace - " + infoTag)
+        plt.xlabel("Time (ms)")
+        plt.ylabel("Median counter values")
+        default = False
+
     if plotType == "histogram":
         for t in unpklTrace[0]:
             plt.hist(t, bins=binNumber)
@@ -68,6 +75,7 @@ def main():
         plt.xlabel("Averaged counter values")
         plt.ylabel("Frequency")
         plt.title(f"Averaged Frequency histogram - " + infoTag)
+        plt.grid("both")
         default = False
 
     # If no plot with special format is called, default = true
@@ -112,7 +120,25 @@ def descriptors(trace, filePath):
     print(f"Median: {round(median(trace))}")
     print(f"Standard deviation: {round(stdev(trace))}")
     print()
-        
+
+
+def medianTrace(traceSet):
+
+    # Same logic as averager but now the resulting trace is made up of the medians of all counter values at a particular index
+    size = len(traceSet[0])
+    medianTrace = list(range(size))
+
+    # Iterate through all indexes in a trace and append the median of the counter values at each index in all traces. 
+    valuesAtIndex = list()
+    for index in range(size):
+        for trace in traceSet:
+            valuesAtIndex.append(trace[index])
+        medianTrace[index] = median(valuesAtIndex)
+        valuesAtIndex.clear() # Empty list for next set of counter values
+
+    return medianTrace 
+
+
 def unpickle(traceFileName, quantity):
 
     traceFileHandle = open(traceFileName, "rb")
