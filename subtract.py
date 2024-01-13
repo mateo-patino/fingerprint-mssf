@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 #   This script plots two averaged or median-ed traces and their difference trace (subtracts the traces).
 #   COMMAND-LINE ARGUMENTS: python subtract.py path1 path2 plot_type trace_length browser 
 #   plot_type must be "average_TYPE" or "median_TYPE" to indicate whether to average or median the two input traces
+#   path2 is subtracted from path1
 
 def main():
 
