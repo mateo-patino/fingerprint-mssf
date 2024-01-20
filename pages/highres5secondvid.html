@@ -2,13 +2,14 @@
 
 <html lang="en">
     <head>
-        <title>Low, 1 second vid</title>
+        <title>High, 5 second vid</title>
         <script>
             document.addEventListener('DOMContentLoaded', function () { 
 
                 setTimeout(function()
                 {
-                    document.querySelector("video").src = "videos/5seconds.mp4";
+                    // Media file was kept outside of repository due to its large size
+                    document.querySelector("video").src = "videos/5secondshigh60fps.mp4";
                 }, 1000);
                 
             });
@@ -16,7 +17,7 @@
     </head>
     <body>
         <!-- Maintain same dimensions of media file -->
-        <video width="400" height="224">
+        <video width="1920" height="1080">
             <source src="">
         </video>
     </body>
