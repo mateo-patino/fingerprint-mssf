@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Low, 1 second vid</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () { 
+
+                setTimeout(function()
+                {
+                    document.querySelector("video").src = "videos/5seconds.mp4"
+                }, 1000);
+                
+            });
+        </script>
+    </head>
+    <body>
+        <!-- Maintain same dimensions of media file -->
+        <video width="400" height="224">
+            <source src="">
+        </video>
+    </body>
+</html>
