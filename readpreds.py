@@ -25,16 +25,15 @@ for path in paths:
     browser = "CHROME"
     title = f"{browser} - F1 AND TOP-1 SCORES FOR {path.split('/')[-1]}"
     print(title)
-    print(f"F1 scores: {f1_scores}")
-    print(f"Top-1 scores: {top1_scores}")
     print(f"F1 mean: {round(np.mean(f1_scores), 2)} ± {round(sem(f1_scores), 1)}")
     print(f"Top-1 mean: {round(np.mean(top1_scores), 2)} ± {round(sem(top1_scores), 1)}")
-
-    print(f"F1 p: {ttest_1samp(f1_scores, 0.5).pvalue}")
-    print(f"Top-1 p: {ttest_1samp(top1_scores, 0.5).pvalue}")
-
-    f1confidenceInt = ttest_1samp(f1_scores, 0.5).confidence_interval(confidence_level=0.95)
-    top1confidenceInt = ttest_1samp(top1_scores, 0.5).confidence_interval(confidence_level=0.95)
-    print(f"F1 95% CI {round(f1confidenceInt[0], 2), round(f1confidenceInt[1], 2)}")
-    print(f"Top-1 95% CI {round(top1confidenceInt[0], 2), round(top1confidenceInt[1], 2)}")
     print()
+    f1tTest = ttest_1samp(f1_scores, 0.5)
+    top1tTest = ttest_1samp(top1_scores, 0.5)
+
+    print(f"F1 p: {f1tTest.pvalue}")
+    print(f"F1 95% CI {round(f1tTest.confidence_interval(confidence_level=0.95)[0], 2), round(f1tTest.confidence_interval(confidence_level=0.95)[1], 2)}")
+    print()
+    print(f"Top-1 p: {top1tTest.pvalue}")
+    print(f"Top-1 95% CI {round(top1tTest.confidence_interval(confidence_level=0.95)[0], 2), round(top1tTest.confidence_interval(confidence_level=0.95)[1], 2)}")
+    
