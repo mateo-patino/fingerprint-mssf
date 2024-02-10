@@ -1,79 +1,116 @@
-CHROME - F1 AND TOP-1 SCORES FOR 200-100words.npz
-F1 scores: [86.95652173913044, 95.23809523809523, 90.9090909090909, 69.56521739130434, 95.23809523809523, 90.9090909090909, 86.95652173913044, 90.0, 80.00000000000001, 85.71428571428572]
-Top-1 scores: [85.0, 95.0, 90.0, 65.0, 95.0, 90.0, 85.0, 90.0, 80.0, 85.0]
+This file contains relevant statistics for experiments done in Chrome where a reference HTML page containing 100 words was compared 
+against pages with increasing number of words (200 through 400 000). The accuracy of the model classifying the two pages was measured
+using the top-1 accuracy and F1 scores.
+
+In each cell below, the first line indicates the browser used and the number of words in the two pages the classifier was trained on each time.
+The second number will always be 100, as this was the reference/baseline page chosen, while the first number will vary. The second and third 
+lines in each cell indicate the F1 and top-1 mean accuracy scores, respectively. The fourth and fifth lines show the p-value and confidence
+interval (95%) for the F1 scores, and the sixth and seventh lines do the same for the top-1 scores.
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 200-100words.npz
 F1 mean: 87.15 ± 2.4
 Top-1 mean: 86.0 ± 2.8
+
 F1 p: 5.2308436502058746e-11
-Top-1 p: 1.919611885007262e-10
 F1 95% CI (81.66, 92.64)
+
+Top-1 p: 1.919611885007262e-10
 Top-1 95% CI (79.74, 92.26)
 
-CHROME - F1 AND TOP-1 SCORES FOR 300-100words.npz
-F1 scores: [66.66666666666666, 85.71428571428572, 57.14285714285713, 45.45454545454545, 0.0, 70.0, 50.0, 66.66666666666666, 69.56521739130434, 66.66666666666666]
-Top-1 scores: [50.0, 85.0, 55.00000000000001, 40.0, 50.0, 70.0, 50.0, 70.0, 65.0, 50.0]
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 300-100words.npz
 F1 mean: 57.79 ± 7.3
 Top-1 mean: 58.5 ± 4.3
+
 F1 p: 2.7125570502615962e-05
-Top-1 p: 2.743698595263375e-07
 F1 95% CI (41.17, 74.41)
+
+Top-1 p: 2.743698595263375e-07
 Top-1 95% CI (48.81, 68.19)
 
-CHROME - F1 AND TOP-1 SCORES FOR 400-100words.npz
-F1 scores: [90.9090909090909, 88.8888888888889, 69.56521739130434, 100.0, 66.66666666666666, 88.8888888888889, 90.0, 82.35294117647058, 70.0, 82.35294117647058]
-Top-1 scores: [90.0, 90.0, 65.0, 100.0, 75.0, 90.0, 90.0, 85.0, 70.0, 85.0]
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 400-100words.npz
 F1 mean: 82.96 ± 3.5
 Top-1 mean: 84.0 ± 3.4
+
 F1 p: 2.0014188949035438e-09
-Top-1 p: 1.4721197005863852e-09
 F1 95% CI (75.1, 90.82)
+
+Top-1 p: 1.4721197005863852e-09
 Top-1 95% CI (76.31, 91.69)
 
-CHROME - F1 AND TOP-1 SCORES FOR 500-100words.npz
-F1 scores: [66.66666666666666, 73.68421052631578, 66.66666666666666, 69.23076923076923, 63.63636363636365, 77.77777777777777, 70.0, 73.68421052631578, 81.81818181818183, 83.33333333333333]
-Top-1 scores: [50.0, 75.0, 60.0, 60.0, 60.0, 80.0, 70.0, 75.0, 80.0, 80.0]
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 500-100words.npz
 F1 mean: 72.65 ± 2.1
 Top-1 mean: 69.0 ± 3.4
+
 F1 p: 7.507446156406838e-11
-Top-1 p: 8.496894823833386e-09
 F1 95% CI (67.89, 77.41)
+
+Top-1 p: 8.496894823833386e-09
 Top-1 95% CI (61.31, 76.69)
 
-CHROME - F1 AND TOP-1 SCORES FOR 10k-100words.npz
-F1 scores: [56.00000000000001, 73.68421052631578, 61.53846153846154, 48.0, 62.5, 76.1904761904762, 57.14285714285713, 60.8695652173913, 76.1904761904762, 72.72727272727272]
-Top-1 scores: [45.0, 75.0, 50.0, 35.0, 70.0, 75.0, 55.00000000000001, 55.00000000000001, 75.0, 70.0]
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 10k-100words.npz
 F1 mean: 64.48 ± 3.1
 Top-1 mean: 60.5 ± 4.6
+
 F1 p: 6.366049218209932e-09
-Top-1 p: 3.509106169649914e-07
 F1 95% CI (57.53, 71.44)
+
+Top-1 p: 3.509106169649914e-07
 Top-1 95% CI (50.18, 70.82)
 
-CHROME - F1 AND TOP-1 SCORES FOR 40k-100words.npz
-F1 scores: [82.35294117647058, 86.95652173913044, 85.71428571428572, 78.26086956521738, 0.0, 75.0, 85.71428571428572, 81.81818181818183, 83.33333333333333, 75.0]
-Top-1 scores: [85.0, 85.0, 85.0, 75.0, 45.0, 70.0, 85.0, 80.0, 80.0, 70.0]
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 40k-100words.npz
 F1 mean: 73.42 ± 8.3
 Top-1 mean: 76.0 ± 3.9
+
 F1 p: 1.008370091658599e-05
-Top-1 p: 1.2942330329142042e-08
 F1 95% CI (54.71, 92.12)
+
+Top-1 p: 1.2942330329142042e-08
 Top-1 95% CI (67.11, 84.89)
 
-CHROME - F1 AND TOP-1 SCORES FOR 100k-100words.npz
-F1 scores: [85.71428571428572, 94.73684210526316, 83.33333333333333, 74.07407407407408, 94.73684210526316, 77.77777777777777, 75.0, 66.66666666666666, 85.71428571428572, 83.33333333333333]
-Top-1 scores: [85.0, 95.0, 80.0, 65.0, 95.0, 80.0, 70.0, 75.0, 85.0, 80.0]
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 100k-100words.npz
 F1 mean: 82.11 ± 2.8
 Top-1 mean: 81.0 ± 3.1
+
 F1 p: 3.521197554755129e-10
-Top-1 p: 7.888409430627705e-10
 F1 95% CI (75.71, 88.51)
+
+Top-1 p: 7.888409430627705e-10
 Top-1 95% CI (74.09, 87.91)
 
-CHROME - F1 AND TOP-1 SCORES FOR 200k-100words.npz
-F1 scores: [100.0, 100.0, 86.95652173913044, 100.0, 88.8888888888889, 84.21052631578948, 86.95652173913044, 100.0, 95.23809523809523, 100.0]
-Top-1 scores: [100.0, 100.0, 85.0, 100.0, 90.0, 85.0, 85.0, 100.0, 95.0, 100.0]
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 200k-100words.npz
 F1 mean: 94.23 ± 2.1
 Top-1 mean: 94.0 ± 2.2
+
 F1 p: 7.55047833406328e-12
-Top-1 p: 1.1536982165248124e-11
 F1 95% CI (89.44, 99.01)
+
+Top-1 p: 1.1536982165248124e-11
 Top-1 95% CI (89.0, 99.0)
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 400k-100words.npz
+F1 mean: 99.47 ± 0.5
+Top-1 mean: 99.5 ± 0.5
+
+F1 p: 1.7296517876374293e-17
+F1 95% CI (98.28, 100.66)
+
+Top-1 p: 1.0876177839967121e-17
+Top-1 95% CI (98.37, 100.63)

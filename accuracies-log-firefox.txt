@@ -1,0 +1,116 @@
+This file contains relevant statistics for experiments done in Firefox where a reference HTML page containing 100 words was compared 
+against pages with increasing number of words (200 through 400 000). The accuracy of the model classifying the two pages was measured
+using the top-1 accuracy and F1 scores.
+
+In each cell below, the first line indicates the browser used and the number of words in the two pages the classifier was trained on each time.
+The second number will always be 100, as this was the reference/baseline page chosen, while the first number will vary. The second and third 
+lines in each cell indicate the F1 and top-1 mean accuracy scores, respectively. The fourth and fifth lines show the p-value and confidence
+interval (95%) for the F1 scores, and the sixth and seventh lines do the same for the top-1 scores.
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 200-100words.npz
+F1 mean: 38.79 ± 10.6
+Top-1 mean: 51.0 ± 1.0
+
+F1 p: 0.005704202963838469
+F1 95% CI (14.76, 62.81)
+
+Top-1 p: 2.3495752794766723e-12
+Top-1 95% CI (48.74, 53.26)
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 300-100words.npz
+F1 mean: 56.19 ± 13.0
+Top-1 mean: 64.5 ± 7.4
+
+F1 p: 0.0020655433390580867
+F1 95% CI (26.72, 85.66)
+
+Top-1 p: 1.1754497652214337e-05
+Top-1 95% CI (47.77, 81.23)
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 400-100words.npz
+F1 mean: 75.76 ± 13.0
+Top-1 mean: 84.0 ± 7.5
+
+F1 p: 0.0002698279124394732
+F1 95% CI (46.25, 105.27)
+
+Top-1 p: 1.4271795945157477e-06
+Top-1 95% CI (67.07, 100.93)
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 800-100words.npz
+F1 mean: 98.47 ± 0.8
+Top-1 mean: 98.5 ± 0.8
+
+F1 p: 6.501050208107502e-16
+F1 95% CI (96.71, 100.23)
+
+Top-1 p: 5.388784033559854e-16
+Top-1 95% CI (96.77, 100.23)
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 10k-100words.npz
+F1 mean: 76.67 ± 10.0
+Top-1 mean: 75.0 ± 8.3
+
+F1 p: 3.26961613874105e-05
+F1 95% CI (54.05, 99.29)
+
+Top-1 p: 9.017972036284604e-06
+Top-1 95% CI (56.15, 93.85)
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 30k-100words.npz
+F1 mean: 76.67 ± 10.0
+Top-1 mean: 75.0 ± 8.3
+
+F1 p: 3.26961613874105e-05
+F1 95% CI (54.05, 99.29)
+
+Top-1 p: 9.017972036284604e-06
+Top-1 95% CI (56.15, 93.85)
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 70k-100words.npz
+F1 mean: 96.67 ± 3.3
+Top-1 mean: 95.0 ± 5.0
+
+F1 p: 3.5192404082232244e-10
+F1 95% CI (89.13, 104.21)
+
+Top-1 p: 1.4945074889074127e-08
+Top-1 95% CI (83.69, 106.31)
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 150k-100words.npz
+F1 mean: 84.17 ± 10.1
+Top-1 mean: 88.0 ± 6.6
+
+F1 p: 1.709268755872517e-05
+F1 95% CI (61.26, 107.07)
+
+Top-1 p: 3.4253741100339224e-07
+Top-1 95% CI (72.99, 103.01)
+
+----------------------------------------------------------
+
+FIREFOX - F1 AND TOP-1 SCORES FOR 400k-100words.npz
+F1 mean: 89.47 ± 5.0
+Top-1 mean: 84.5 ± 7.5
+
+F1 p: 2.5526059217723693e-08
+F1 95% CI (78.16, 100.79)
+
+Top-1 p: 1.4533113648375395e-06
+Top-1 95% CI (67.43, 101.57)
