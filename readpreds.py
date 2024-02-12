@@ -2,17 +2,10 @@ import numpy as np
 from sklearn.metrics import f1_score, top_k_accuracy_score
 from scipy.stats import ttest_1samp, sem
 
-prefix = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/chrome_traces/training/predictions/words/"
+prefix = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/firefox_traces/training/predictions/words/"
 paths = [
-    f"{prefix}200-100words.npz",
-    f"{prefix}300-100words.npz",
-    f"{prefix}400-100words.npz",
-    f"{prefix}500-100words.npz",
     f"{prefix}10k-100words.npz",
-    f"{prefix}40k-100words.npz",
-    f"{prefix}100k-100words.npz",
-    f"{prefix}200k-100words.npz",
-    f"{prefix}400k-100words.npz",
+    f"{prefix}30k-100words.npz",
 ]
 for path in paths:
     data = np.load(path)
