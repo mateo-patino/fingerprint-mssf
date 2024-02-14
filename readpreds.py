@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.metrics import f1_score, top_k_accuracy_score
 from scipy.stats import ttest_1samp, sem
 
-prefix = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/firefox_traces/training/predictions/words/"
+prefix = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/firefox_traces/training/real-hundreds"
 paths = [
     f"{prefix}10k-100words.npz",
     f"{prefix}30k-100words.npz",
