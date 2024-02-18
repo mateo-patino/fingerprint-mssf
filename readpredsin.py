@@ -1,4 +1,4 @@
-p = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/firefox_traces/training/real-hundreds"
+p = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/firefox_traces/training/predictions/words/real-hundreds"
 
 predictionPaths = [
     [f"{p}/200-100words1.npz", f"{p}/200-100words2.npz", f"{p}/200-100words3.npz", f"{p}/200-100words4.npz"],
