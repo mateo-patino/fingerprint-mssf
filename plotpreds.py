@@ -1,11 +1,10 @@
 from readpredsin import predictionPaths
 from sklearn.metrics import f1_score
-from scipy.stats import ttest_1samp, sem
+from scipy.stats import pearsonr, sem
 from sys import argv, exit
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
 # This script gives a scatter plot with the mean F1 scores for the number of models trained per pair of pages
 # This script takes in two command-line arguments: "average" or "individual" and browser name. "average" plots the average F1 of the four
@@ -44,37 +43,59 @@ def main():
             avg_y_errors.append(round(sem(scores), 2))
             scores.clear()
 
+    errbarcolor = 'gray'
     xAxis = axis()
     if argv[1] == 'average':
 
         # Compute slope and y-intercept for regression line and plot error bars
         slope, intercept = np.polyfit(xAxis, avg_scores, deg=1)
-        plt.errorbar(xAxis, avg_scores, yerr=avg_y_errors, fmt='o', ecolor='gray', capsize=4, color='red')
+        plt.scatter(xAxis, avg_scores, s=50, color='dodgerblue')
+        plt.errorbar(xAxis, avg_scores, yerr=avg_y_errors, ecolor=errbarcolor, capsize=4, ls='None')
+
+        # Compute Pearson's r and p-value
+        pvalue, pearsoncoef = stats(xAxis, avg_scores)
+        print(f'Length of "avg_scores": {len(avg_scores)}')
+        print('The length of "avg_score" is relevant because it is the sample used\nto calculate Pearson\'s r and p-values. ')
 
     elif argv[1] == 'individual':
-        slope, intercept = np.polyfit(xAxis, scores, deg=1)
-        plt.errorbar(xAxis, scores, yerr=y_errors, fmt='o', ecolor='gray', capsize=4, color='red')
 
-    plt.style.use('fast')
+        slope, intercept = np.polyfit(xAxis, scores, deg=1)
+        plt.scatter(xAxis, scores, s=50, color='dodgerblue')
+        plt.errorbar(xAxis, scores, yerr=y_errors, ecolor=errbarcolor, capsize=4, ls='None')
+
+        print(f'Length of "scores": {len(scores)}')
+        print('The length of "score" is relevant because it is the sample used \n to calculate Pearson\'s r and p-values. ')
+        pearsoncoef, pvalue = stats(xAxis, scores)    
+
+    print(f'p = {pvalue}\nr = {pearsoncoef}')    
     
     # Compute regression line
-    upperBound = 1000 # Maximum difference used
+    upperBound = 12000 # Maximum difference used
     lowerBound = 100
     xseq = np.linspace(lowerBound, upperBound, 50)
     reg_y_axis = xseq * slope
     reg_y_axis = reg_y_axis + intercept
-    plt.plot(xseq, reg_y_axis, color='blue', lw=2)
+    plt.plot(xseq, reg_y_axis, color='red', lw=2)
+
+    # Set text box up to include r and p-value
+    values = (f'p = {pvalue}\n'
+             f'r = {pearsoncoef}')
+    bbox = dict(boxstyle='round', fc='blanchedalmond', ec='orange', alpha=0.5)
 
     # Plot information
     plt.xlabel('Word count difference')
     plt.ylabel('F1 score (%)')
     plt.grid('both')
-    plt.ylim((0, 100))
+    plt.ylim((0, 120))
     plt.title(f'F1 accuracy score vs. word count difference - {argv[2].capitalize()} - 4 models per difference level')
     plt.yticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
 
+    # Add stats box
+    plt.text(upperBound - 1500, 12, values, fontsize=10, bbox=bbox,
+            horizontalalignment='left')
+    
+    # Set x-axis ticks
     automaticTicks = False
-
     if not automaticTicks:
         plt.xticks(x_ticks())
 
@@ -86,9 +107,12 @@ def x_ticks():
     xTicks1 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
     
     # xTicks2 is for individual AND average F1 scores for thousands Chrome
-    xTicks2 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+    xTicks2 = [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000, 18000, 20000]
+
+    # xTicks2 is for individual AND average F1 scores for thousands Firefox
+    xTicks3 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000]
     
-    return xTicks1
+    return xTicks3
     
 def axis():
 
@@ -120,15 +144,48 @@ def axis():
         6995.5, 7000, 7005.5, 7010,
         7995.5, 8000, 8005.5, 8010,
         8995.5, 9000, 9005.5, 9010,
-        9995.5, 10000, 10005.5, 10010
+        9995.5, 10000, 10005.5, 10010,
+        10995.5, 11000, 11005.5, 11010,
+        11995.5, 12000, 12005.5, 12010,
+        12995.5, 13000, 13005.5, 13010,
+        13995.5, 14000, 14005.5, 14010,
+        14995.5, 15000, 15005.5, 15010,
+        15995.5, 16000, 16005.5, 16010,
+        16995.5, 17000, 17005.5, 17010,
+        17995.5, 18000, 18005.5, 18010,
+        18995.5, 19000, 19005.5, 19010,
+        19995.5, 20000, 20005.5, 20010
     ]
 
-    xAxis4 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+    # xAxis4 is for thousands experiment in Chrome, ind, averaged
+    xAxis4 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000]
 
-    return xAxis2
 
-# 1) Reach 20k in the chrome plot; you already have the pkl data, now you got to run it through Colab
-# 2) You'll repeat the Firefox experiments but using the increments of 1000 you used for Chrome
+    # xAxis5 is for thousands experiment in Firefox, four models per pair
+    xAxis5 = [
+        995, 1000, 1005.5, 1010,
+        1995.5, 2000, 2005.5, 2010,
+        2995.5, 3000, 3005.5, 3010,
+        3995.5, 4000, 4005.5, 4010,
+        4995.5, 5000, 5005.5, 5010,
+        5995.5, 6000, 6005.5, 6010,
+        6995.5, 7000, 7005.5, 7010,
+        7995.5, 8000, 8005.5, 8010,
+        8995.5, 9000, 9005.5, 9010,
+        9995.5, 10000, 10005.5, 10010,
+        10995.5, 11000, 11005.5, 11010,
+        11995.5, 12000, 12005.5, 12010
+    ]
+
+    return xAxis5
+
+# returns list with p-values and Pearson's r
+def stats(x, y):
+
+    r, p = pearsonr(x, y)
+    return round(r, 2), round(p, 7)
+
+# 2) Two things to do: expand the Firefox 1k scale graph up to 20k; increase the Chrome graph up to 30k
 # 3) Do what Jack suggests about loading the images right after the page loads and using larger increments
 
 
