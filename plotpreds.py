@@ -70,7 +70,7 @@ def main():
     print(f'p = {pvalue}\nr = {pearsoncoef}')    
     
     # Compute regression line
-    upperBound = 12000 # Maximum difference used
+    upperBound = 14000 # Maximum difference used
     lowerBound = 100
     xseq = np.linspace(lowerBound, upperBound, 50)
     reg_y_axis = xseq * slope
@@ -91,7 +91,7 @@ def main():
     plt.yticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
 
     # Add stats box
-    plt.text(upperBound - 1500, 12, values, fontsize=10, bbox=bbox,
+    plt.text(upperBound - 4000, 12, values, fontsize=10, bbox=bbox,
             horizontalalignment='left')
     
     # Set x-axis ticks
@@ -106,13 +106,17 @@ def x_ticks():
     # xTicks1 is for individual AND average F1 scores for hundreds Firefox
     xTicks1 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
     
-    # xTicks2 is for individual AND average F1 scores for thousands Chrome
+    # xTicks2 is for individual AND average F1 scores for thousands Firefox
     xTicks2 = [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000, 18000, 20000]
 
-    # xTicks2 is for individual AND average F1 scores for thousands Firefox
-    xTicks3 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000]
+    # xTicks3 is for individual AND average F1 scores for thousands up to 30K Chrome
+    xTicks3 = [3000, 6000, 9000, 12000, 15000, 18000, 21000, 24000, 27000, 30000]
+
+    xTrial2 = [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000]
+
+    xTrial3 = [1000, 2000, 3000, 4000, 5000, 6000, 7000]
     
-    return xTicks3
+    return xTrial2
     
 def axis():
 
@@ -133,7 +137,7 @@ def axis():
     # xAxis2 is for averaged F1 scores for hundreds Firefox
     xAxis2 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
-    # xAxis3 is for thousands experiment in Chrome, ind, four models per pair
+    # xAxis3 is for thousands experiment in Firefox four models per pair
     xAxis3 = [
         995, 1000, 1005.5, 1010,
         1995.5, 2000, 2005.5, 2010,
@@ -158,10 +162,10 @@ def axis():
     ]
 
     # xAxis4 is for thousands experiment in Chrome, ind, averaged
-    xAxis4 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000]
-
-
-    # xAxis5 is for thousands experiment in Firefox, four models per pair
+    xAxis4 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000,
+              21000, 22000, 23000, 24000, 25000, 26000, 27000, 28000, 29000, 30000]
+    
+    # xAxis5 is for Chrome individual up to 30k
     xAxis5 = [
         995, 1000, 1005.5, 1010,
         1995.5, 2000, 2005.5, 2010,
@@ -174,10 +178,55 @@ def axis():
         8995.5, 9000, 9005.5, 9010,
         9995.5, 10000, 10005.5, 10010,
         10995.5, 11000, 11005.5, 11010,
-        11995.5, 12000, 12005.5, 12010
+        11995.5, 12000, 12005.5, 12010,
+        12995.5, 13000, 13005.5, 13010,
+        13995.5, 14000, 14005.5, 14010,
+        14995.5, 15000, 15005.5, 15010,
+        15995.5, 16000, 16005.5, 16010,
+        16995.5, 17000, 17005.5, 17010,
+        17995.5, 18000, 18005.5, 18010,
+        18995.5, 19000, 19005.5, 19010,
+        19995.5, 20000, 20005.5, 20010,
+        20995.5, 21000, 21005.5, 21010,
+        21995.5, 22000, 22005.5, 22010,
+        22995.5, 23000, 23005.5, 23010,
+        23995.5, 24000, 24005.5, 24010,
+        24995.5, 25000, 25005.5, 25010,
+        25995.5, 26000, 26005.5, 26010,
+        26995.5, 27000, 27005.5, 27010,
+        27995.5, 28000, 28005.5, 28010,
+        28995.5, 29000, 29005.5, 29010,
+        29995.5, 30000, 30005.5, 30010
     ]
 
-    return xAxis5
+    xTrial2 = [
+        995, 1000, 1005.5, 1010,
+        1995.5, 2000, 2005.5, 2010,
+        2995.5, 3000, 3005.5, 3010,
+        3995.5, 4000, 4005.5, 4010,
+        4995.5, 5000, 5005.5, 5010,
+        5995.5, 6000, 6005.5, 6010,
+        6995.5, 7000, 7005.5, 7010,
+        7995.5, 8000, 8005.5, 8010,
+        8995.5, 9000, 9005.5, 9010,
+        9995.5, 10000, 10005.5, 10010,
+        10995.5, 11000, 11005.5, 11010,
+        11995.5, 12000, 12005.5, 12010,
+        12995.5, 13000, 13005.5, 13010,
+        13995.5, 14000, 14005.5, 14010
+        ]
+    
+    xTrial3 = [
+        995, 1000, 1005.5, 1010,
+        1995.5, 2000, 2005.5, 2010,
+        2995.5, 3000, 3005.5, 3010,
+        3995.5, 4000, 4005.5, 4010,
+        4995.5, 5000, 5005.5, 5010,
+        5995.5, 6000, 6005.5, 6010,
+        6995.5, 7000, 7005.5, 7010,
+    ]
+    
+    return xTrial2
 
 # returns list with p-values and Pearson's r
 def stats(x, y):
@@ -185,7 +234,10 @@ def stats(x, y):
     r, p = pearsonr(x, y)
     return round(r, 2), round(p, 7)
 
-# 2) Two things to do: expand the Firefox 1k scale graph up to 20k; increase the Chrome graph up to 30k
+# 1) Tomorrow, I’ll collect traces for the same 14 pages but will do 200 runs per page; I want to see if the accuracies change by 
+#    giving the model twice as many examples per class.  Then, I'll leave my computer running for as long as it takes to collect 
+#    traces for the 30 pages in one run.
+
 # 3) Do what Jack suggests about loading the images right after the page loads and using larger increments
 
 
