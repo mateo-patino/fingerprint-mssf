@@ -1,6 +1,6 @@
 from readpredsin import predictionPaths
 from sklearn.metrics import f1_score
-from scipy.stats import pearsonr, sem
+from scipy.stats import pearsonr, spearmanr, sem
 from sys import argv, exit
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -10,6 +10,8 @@ import numpy as np
 # This script takes in two command-line arguments: "average" or "individual" and browser name. "average" plots the average F1 of the four
 # trained models; "individual" plots the individual F1 scores for each of the four trained models. 
 
+testType = 'pearson' # CHANGE MANUALLY
+
 def main():
 
     if len(argv) != 3:
@@ -17,7 +19,6 @@ def main():
 
     if argv[1] != 'individual' and argv[1] != 'average':
         exit('You must indicate "individual" or "average"')
-    
     
     scores = []
     y_errors = []
@@ -52,8 +53,8 @@ def main():
         plt.scatter(xAxis, avg_scores, s=50, color='dodgerblue')
         plt.errorbar(xAxis, avg_scores, yerr=avg_y_errors, ecolor=errbarcolor, capsize=4, ls='None')
 
-        # Compute Pearson's r and p-value
-        pvalue, pearsoncoef = stats(xAxis, avg_scores)
+        # Compute r and p-value
+        rcoef, pvalue = stats(xAxis, avg_scores)
         print(f'Length of "avg_scores": {len(avg_scores)}')
         print('The length of "avg_score" is relevant because it is the sample used\nto calculate Pearson\'s r and p-values. ')
 
@@ -65,12 +66,13 @@ def main():
 
         print(f'Length of "scores": {len(scores)}')
         print('The length of "score" is relevant because it is the sample used \n to calculate Pearson\'s r and p-values. ')
-        pearsoncoef, pvalue = stats(xAxis, scores)    
+        rcoef, pvalue = stats(xAxis, scores)
+    
 
-    print(f'p = {pvalue}\nr = {pearsoncoef}')    
+    print(f'p = {pvalue}\nr = {rcoef}')    
     
     # Compute regression line
-    upperBound = 14000 # Maximum difference used
+    upperBound = 30000 # Maximum difference used
     lowerBound = 100
     xseq = np.linspace(lowerBound, upperBound, 50)
     reg_y_axis = xseq * slope
@@ -79,7 +81,7 @@ def main():
 
     # Set text box up to include r and p-value
     values = (f'p = {pvalue}\n'
-             f'r = {pearsoncoef}')
+             f'{testType.capitalize()} r = {rcoef}')
     bbox = dict(boxstyle='round', fc='blanchedalmond', ec='orange', alpha=0.5)
 
     # Plot information
@@ -116,7 +118,7 @@ def x_ticks():
 
     xTrial3 = [1000, 2000, 3000, 4000, 5000, 6000, 7000]
     
-    return xTrial2
+    return xTicks3
     
 def axis():
 
@@ -226,19 +228,18 @@ def axis():
         6995.5, 7000, 7005.5, 7010,
     ]
     
-    return xTrial2
+    return xAxis5
 
 # returns list with p-values and Pearson's r
 def stats(x, y):
 
-    r, p = pearsonr(x, y)
+    if testType == 'spearman':
+        r, p = spearmanr(x, y)
+
+    elif testType == 'pearson':
+        r, p = pearsonr(x, y)
+
     return round(r, 2), round(p, 7)
-
-# 1) Tomorrow, I’ll collect traces for the same 14 pages but will do 200 runs per page; I want to see if the accuracies change by 
-#    giving the model twice as many examples per class.  Then, I'll leave my computer running for as long as it takes to collect 
-#    traces for the 30 pages in one run.
-
-# 3) Do what Jack suggests about loading the images right after the page loads and using larger increments
 
 
 if __name__ == "__main__":

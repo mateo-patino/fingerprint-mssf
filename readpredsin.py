@@ -1,4 +1,4 @@
-p = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/chrome_traces/training/predictions/words/real-thousands/adam"
+p = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/chrome_traces/training/predictions/words/real-thousands/CHROMEFINALPREDS"
 
 predictionPaths = [
     [f"{p}/1100-100words1.npz", f"{p}/1100-100words2.npz", f"{p}/1100-100words3.npz", f"{p}/1100-100words4.npz"],
@@ -14,5 +14,21 @@ predictionPaths = [
     [f"{p}/11100-100words1.npz", f"{p}/11100-100words2.npz", f"{p}/11100-100words3.npz", f"{p}/11100-100words4.npz"],
     [f"{p}/12100-100words1.npz", f"{p}/12100-100words2.npz", f"{p}/12100-100words3.npz", f"{p}/12100-100words4.npz"],
     [f"{p}/13100-100words1.npz", f"{p}/13100-100words2.npz", f"{p}/13100-100words3.npz", f"{p}/13100-100words4.npz"],
-    [f"{p}/14100-100words1.npz", f"{p}/14100-100words2.npz", f"{p}/14100-100words3.npz", f"{p}/14100-100words4.npz"]
+    [f"{p}/14100-100words1.npz", f"{p}/14100-100words2.npz", f"{p}/14100-100words3.npz", f"{p}/14100-100words4.npz"],
+    [f"{p}/15100-100words1.npz", f"{p}/15100-100words2.npz", f"{p}/15100-100words3.npz", f"{p}/15100-100words4.npz"],
+    [f"{p}/16100-100words1.npz", f"{p}/16100-100words2.npz", f"{p}/16100-100words3.npz", f"{p}/16100-100words4.npz"],
+    [f"{p}/17100-100words1.npz", f"{p}/17100-100words2.npz", f"{p}/17100-100words3.npz", f"{p}/17100-100words4.npz"],
+    [f"{p}/18100-100words1.npz", f"{p}/18100-100words2.npz", f"{p}/18100-100words3.npz", f"{p}/18100-100words4.npz"],
+    [f"{p}/19100-100words1.npz", f"{p}/19100-100words2.npz", f"{p}/19100-100words3.npz", f"{p}/19100-100words4.npz"],
+    [f"{p}/20100-100words1.npz", f"{p}/20100-100words2.npz", f"{p}/20100-100words3.npz", f"{p}/20100-100words4.npz"],
+    [f"{p}/21100-100words1.npz", f"{p}/21100-100words2.npz", f"{p}/21100-100words3.npz", f"{p}/21100-100words4.npz"],
+    [f"{p}/22100-100words1.npz", f"{p}/22100-100words2.npz", f"{p}/22100-100words3.npz", f"{p}/22100-100words4.npz"],
+    [f"{p}/23100-100words1.npz", f"{p}/23100-100words2.npz", f"{p}/23100-100words3.npz", f"{p}/23100-100words4.npz"],
+    [f"{p}/24100-100words1.npz", f"{p}/24100-100words2.npz", f"{p}/24100-100words3.npz", f"{p}/24100-100words4.npz"],
+    [f"{p}/25100-100words1.npz", f"{p}/25100-100words2.npz", f"{p}/25100-100words3.npz", f"{p}/25100-100words4.npz"],
+    [f"{p}/26100-100words1.npz", f"{p}/26100-100words2.npz", f"{p}/26100-100words3.npz", f"{p}/26100-100words4.npz"],
+    [f"{p}/27100-100words1.npz", f"{p}/27100-100words2.npz", f"{p}/27100-100words3.npz", f"{p}/27100-100words4.npz"],
+    [f"{p}/28100-100words1.npz", f"{p}/28100-100words2.npz", f"{p}/28100-100words3.npz", f"{p}/28100-100words4.npz"],
+    [f"{p}/29100-100words1.npz", f"{p}/29100-100words2.npz", f"{p}/29100-100words3.npz", f"{p}/29100-100words4.npz"],
+    [f"{p}/30100-100words1.npz", f"{p}/30100-100words2.npz", f"{p}/30100-100words3.npz", f"{p}/30100-100words4.npz"]
 ]
