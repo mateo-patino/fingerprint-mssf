@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>10000 pic</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function (){
+
+                setTimeout(function() { 
+
+                    let imageNum = 10000;
+                    for (let i = 0; i < imageNum; i++)
+                    {
+                        let newImage = document.createElement('img');
+                        newImage.src = 'imgs/image1.jpg';
+                        document.querySelector('body').append(newImage); 
+                    }
+                
+                }, 1000);
+                
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
