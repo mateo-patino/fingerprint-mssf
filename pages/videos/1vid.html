@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>10 vid</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function (){
+
+                setTimeout(function() { 
+
+                    let vidNum = 1;
+                    for (let i = 0; i < vidNum; i++)
+                    {
+                        let newVideo = document.createElement('video');
+                        newVideo.src = 'vidfiles/1second.mp4';
+                        newVideo.height = 496;
+                        newVideo.width = 416;
+                        document.querySelector('body').append(newVideo); 
+                    }
+                
+                }, 1000);
+                
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
