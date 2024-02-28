@@ -1,14 +1,11 @@
 from readpredsin import predictionPaths
 from sklearn.metrics import f1_score
 from scipy.stats import pearsonr, spearmanr, sem
+from scipy.optimize import curve_fit
 from sys import argv, exit
-import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-# This script gives a scatter plot with the mean F1 scores for the number of models trained per pair of pages
-# This script takes in two command-line arguments: "average" or "individual" and browser name. "average" plots the average F1 of the four
-# trained models; "individual" plots the individual F1 scores for each of the four trained models. 
 
 testType = 'spearman' # CHANGE MANUALLY
 
@@ -36,34 +33,41 @@ def main():
             scores.append(np.mean(f1_scores))
             y_errors.append(round(sem(f1_scores), 2))
 
-    errbarcolor = 'gray'
     xAxis = axis()
 
     scores = np.array(scores)
     xAxis = np.array(xAxis)
 
+    upperBound = 10000 # Maximum difference used
+    lowerBound = 0
+    xseq = np.linspace(lowerBound, upperBound, 500)
+
     # Fit y = B + Alog(x)
     if plotType == 'log':
 
         A, B = np.polyfit(np.log(xAxis), scores, 1)
+        reg_y_axis = np.log(xseq) * A
+        reg_y_axis = reg_y_axis + B
 
-        # Compute logarithmic curve
-        upperBound = 110 # Maximum difference used
-        lowerBound = 0
-        xseq = np.linspace(lowerBound, upperBound, 200)
-        s = np.log(xseq) * A
-        s = s + B
-        print(f"A: {A}, B: {B}")
-        print(s)
-        plt.plot(xseq, s, color='red', lw=2)
+    if plotType == 'line':
 
-    plt.scatter(xAxis, scores, s=50, color='blue')
-    plt.errorbar(xAxis, scores, yerr=y_errors, ecolor=errbarcolor, capsize=4, ls='None')
+        slope, intercept = np.polyfit(xAxis, scores, deg=1)
+        reg_y_axis = xseq * slope
+        reg_y_axis = reg_y_axis + intercept
+
+    if plotType == 'logistic':
+
+        popt, pcov = curve_fit(logistic_function, xAxis, scores, bounds=(0, [100.0, 1.0, 100.0]))
+        L, k, x0 = popt
+        xseq = np.linspace(0, 10000, 1000)
+        reg_y_axis = logistic_function(xseq, L, k, x0)
+
+    if plotType != 'none': plt.plot(xseq, reg_y_axis, color='red', lw=2)
+
+    plt.scatter(xAxis, scores, s=50, color='black')
 
     print(f'Length of "scores": {len(scores)}')
-    print('The length of "score" is relevant because it is the sample used \n to calculate r and p-values. ')
     rcoef, pvalue = stats(xAxis, scores)
-    
 
     print(f'p = {pvalue}\nr = {rcoef}')    
 
@@ -73,16 +77,16 @@ def main():
     bbox = dict(boxstyle='round', fc='blanchedalmond', ec='orange', alpha=0.5, pad=0.5)
 
     # Plot information
-    plt.xlabel('Image count difference')
+    plt.xlabel('image count difference')
     plt.ylabel('F1 score (%)')
-    #plt.grid('both')
+    plt.grid(axis='y')
     plt.ylim((0, 110))
-    plt.xlim((0, 110))
+    plt.xlim((0, 11000))
     plt.title(f'F1 accuracy score vs. image count difference - {browser.capitalize()} - 4 models per difference level')
     plt.yticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
 
     # Add stats box
-    plt.text(upperBound - 30, 11, values, fontsize=12, bbox=bbox,
+    plt.text(upperBound - 2500, 11, values, fontsize=12, bbox=bbox,
             horizontalalignment='left')
     
     # Set x-axis ticks
@@ -92,24 +96,30 @@ def main():
 
     plt.show()    
 
+def logistic_function(x, L, k, x0):
+   return L / (1 + np.exp(-k * (x - x0)))
+
+# I MANUALLY select the ticks and axis I want to use before running this script, so I just
+# change the return value of the two functions below. 
+
 def x_ticks():
 
-    # xTicks1 is for images tens scale
     xTicks1 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     
-    # xTicks2 is for individual AND average F1 scores for thousands Firefox
     xTicks2 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
-    # xTicks3 is for individual AND average F1 scores for thousands up to 30K Chrome
     xTicks3 = [3000, 6000, 9000, 12000, 15000, 18000, 21000, 24000, 27000, 30000]
 
     xTrial3 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+
+    xTicks4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    xTicks5 = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
     
-    return xTicks1
+    return xTrial3
     
 def axis():
 
-    # xAxis1 is for pics hundreds scale
     xAxis1 = [
         95, 100, 105.5, 101,
         195.5, 200, 205.5, 210,
@@ -123,10 +133,8 @@ def axis():
         995.5, 1000, 1005.5, 1010
     ]
 
-    # xAxis2 is for averaged F1 scores for hundreds Firefox
     xAxis2 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
-    # xAxis3 is for thousands experiment in Firefox four models per pair
     xAxis3 = [
         930, 1000, 1070, 1140,
         1930, 2000, 2070, 2140,
@@ -140,11 +148,9 @@ def axis():
         9930, 10000, 10070, 10140
     ]
 
-    # xAxis4 is for thousands experiment in Chrome, ind, averaged
     xAxis4 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000,
               21000, 22000, 23000, 24000, 25000, 26000, 27000, 28000, 29000, 30000]
     
-    # xAxis5 is for Chrome individual up to 30k
     xAxis5 = [
         995, 1000, 1005.5, 1010,
         1995.5, 2000, 2005.5, 2010,
@@ -179,7 +185,6 @@ def axis():
     ]
 
 
-    # Pic experiments, tens scale
     xAxis6 = [
         9, 10, 11, 12,
         19, 20, 21, 22,
@@ -193,8 +198,6 @@ def axis():
         99, 100, 101, 102
     ]
 
-    # Pic experiment, hundreds scale
-    # Pic experiments, tens scale
     xAxis7 = [
         98, 99, 100, 101,
         198, 199, 200, 201,
@@ -207,8 +210,32 @@ def axis():
         898, 899, 900, 901,
         998, 999, 1000, 1001
     ]
+
+    xAxis8 = [0.85, 0.95, 1.05, 1.15,
+              1.85, 1.95, 2.05, 2.15,
+              2.85, 2.95, 3.05, 3.15,
+              3.85, 3.95, 4.05, 4.15,
+              4.85, 4.95, 5.05, 5.15,
+              5.85, 5.95, 6.05, 6.15,
+              6.85, 6.95, 7.05, 7.15,
+              7.85, 7.95, 8.05, 8.15,
+              8.85, 8.95, 9.05, 9.15,
+              9.85, 9.95, 10.05, 10.15,
+    ]
+
+    xAxis9 = [5.85, 5.95, 6.05, 6.15,
+          10.85, 10.95, 11.05, 11.15,
+          15.85, 15.95, 16.05, 16.15,
+          20.85, 20.95, 21.05, 21.15,
+          25.85, 25.95, 26.05, 26.15,
+          30.85, 30.95, 31.05, 31.15,
+          35.85, 35.95, 36.05, 36.15,
+          40.85, 40.95, 41.05, 41.15,
+          45.85, 45.95, 46.05, 46.15,
+          50.85, 50.95, 51.05, 51.15
+    ]
     
-    return xAxis6
+    return xAxis3
 
 # returns list with p-values and Pearson's r
 def stats(x, y):

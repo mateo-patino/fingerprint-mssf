@@ -24,9 +24,8 @@ def main():
         exit('You must indicate "individual" or "average"')
     
     scores = []
-    y_errors = []
     avg_scores = []
-    avg_y_errors = []
+
 
     # Use the list of path lists in readpredsin.py
     for paths in predictionPaths:
@@ -40,21 +39,17 @@ def main():
             for i in range(len(true)):
                 f1_scores.append(f1_score(true[i], preds[i].argmax(axis=1)) * 100)
             scores.append(np.mean(f1_scores))
-            y_errors.append(sem(f1_scores))
 
         if argv[1] == 'average':
             avg_scores.append(np.mean(scores))
-            avg_y_errors.append(round(sem(scores), 2))
             scores.clear()
 
-    errbarcolor = 'gray'
     xAxis = axis()
     if argv[1] == 'average':
 
         # Compute slope and y-intercept for regression line and plot error bars
         slope, intercept = np.polyfit(xAxis, avg_scores, deg=1)
-        plt.scatter(xAxis, avg_scores, s=50, color='dodgerblue')
-        plt.errorbar(xAxis, avg_scores, yerr=avg_y_errors, ecolor=errbarcolor, capsize=4, ls='None')
+        plt.scatter(xAxis, avg_scores, s=50, color='black')
 
         # Compute r and p-value
         rcoef, pvalue = stats(xAxis, avg_scores)
@@ -64,8 +59,7 @@ def main():
     elif argv[1] == 'individual':
 
         slope, intercept = np.polyfit(xAxis, scores, deg=1)
-        plt.scatter(xAxis, scores, s=50, color='dodgerblue')
-        plt.errorbar(xAxis, scores, yerr=y_errors, ecolor=errbarcolor, capsize=4, ls='None')
+        plt.scatter(xAxis, scores, s=50, color='black')
 
         print(f'Length of "scores": {len(scores)}')
         print('The length of "score" is relevant because it is the sample used \n to calculate r and p-values. ')
@@ -75,7 +69,7 @@ def main():
     print(f'p = {pvalue}\nr = {rcoef}')    
     
     # Compute regression line
-    upperBound = 10000 # Maximum difference used
+    upperBound = 10000 # Maximum difference used; CHANGED MANUALLY
     lowerBound = 1000
     xseq = np.linspace(lowerBound, upperBound, 50)
     reg_y_axis = xseq * slope
@@ -90,14 +84,14 @@ def main():
     # Plot information
     plt.xlabel('Image count difference')
     plt.ylabel('F1 score (%)')
-    #plt.grid('both')
+    plt.grid(axis='y')
     plt.ylim((0, 110))
     plt.xlim((0, 11000))
     plt.title(f'F1 accuracy score vs. image count difference - {argv[2].capitalize()} - 4 models per difference level')
     plt.yticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
 
     # Add stats box
-    plt.text(upperBound - 3000, 11, values, fontsize=12, bbox=bbox,
+    plt.text(upperBound - 4000, 11, values, fontsize=11, bbox=bbox,
             horizontalalignment='left')
     
     # Set x-axis ticks
@@ -109,13 +103,12 @@ def main():
 
 def x_ticks():
 
-    # xTicks1 is for images tens scale
+    # I MANUALLY SELECT WHAT TICKS I WANT TO RETURN BEFORE RUNNING THE SCRIPT
+
     xTicks1 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     
-    # xTicks2 is for individual AND average F1 scores for thousands Firefox
     xTicks2 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
-    # xTicks3 is for individual AND average F1 scores for thousands up to 30K Chrome
     xTicks3 = [3000, 6000, 9000, 12000, 15000, 18000, 21000, 24000, 27000, 30000]
 
     xTrial3 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
@@ -124,7 +117,6 @@ def x_ticks():
     
 def axis():
 
-    # xAxis1 is for individual F1 scores for hundreds Firefox
     xAxis1 = [
         95, 100, 105.5, 101,
         195.5, 200, 205.5, 210,
@@ -138,10 +130,8 @@ def axis():
         995.5, 1000, 1005.5, 1010
     ]
 
-    # xAxis2 is for averaged F1 scores for hundreds Firefox
     xAxis2 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
-    # xAxis3 is for thousands experiment in Firefox four models per pair
     xAxis3 = [
         990, 1000, 1010, 1020,
         1990, 2000, 2010, 2020,
@@ -155,11 +145,10 @@ def axis():
         9990, 10000, 10010, 10020,
     ]
 
-    # xAxis4 is for thousands experiment in Chrome, ind, averaged
     xAxis4 = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000,
               21000, 22000, 23000, 24000, 25000, 26000, 27000, 28000, 29000, 30000]
     
-    # xAxis5 is for Chrome individual up to 30k
+
     xAxis5 = [
         995, 1000, 1005.5, 1010,
         1995.5, 2000, 2005.5, 2010,
@@ -209,7 +198,6 @@ def axis():
     ]
 
     # Pic experiment, hundreds scale
-    # Pic experiments, tens scale
     xAxis7 = [
         98, 99, 100, 101,
         198, 199, 200, 201,
@@ -224,7 +212,6 @@ def axis():
     ]
 
     
-    
     return xAxis3
 
 # returns list with p-values and Pearson's r
@@ -236,7 +223,7 @@ def stats(x, y):
     elif testType == 'pearson':
         r, p = pearsonr(x, y)
 
-    return round(r, 2), round(p, 8)
+    return round(r, 2), round(p, 2)
 
 
 if __name__ == "__main__":

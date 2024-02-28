@@ -13,7 +13,7 @@ predictionPaths = [
     [f"{p}/1100-100words1.npz", f"{p}/1100-100words2.npz", f"{p}/1100-100words3.npz", f"{p}/1100-100words4.npz"],
 ]
 
-p = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/chrome_traces/training/predictions/words/real-thousands"
+p = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/chrome_traces/training/predictions/words/real-thousands/CHROMEFINALPREDS"
 
 predictionPaths = [
     [f"{p}/1100-100words1.npz", f"{p}/1100-100words2.npz", f"{p}/1100-100words3.npz", f"{p}/1100-100words4.npz"],
@@ -129,7 +129,23 @@ predictionPaths = [
     [f"{p}/7000-1000pic1.npz", f"{p}/7000-1000pic2.npz", f"{p}/7000-1000pic3.npz", f"{p}/7000-1000pic4.npz"],
     [f"{p}/8000-1000pic1.npz", f"{p}/8000-1000pic2.npz", f"{p}/8000-1000pic3.npz", f"{p}/8000-1000pic4.npz"],
     [f"{p}/9000-1000pic1.npz", f"{p}/9000-1000pic2.npz", f"{p}/9000-1000pic3.npz", f"{p}/9000-1000pic4.npz"],
-    [f"{p}/10000-1000p0ic1.npz", f"{p}/10000-1000pic2.npz", f"{p}/10000-1000pic3.npz", f"{p}/10000-1000pic4.npz"],
+    [f"{p}/10000-1000pic1.npz", f"{p}/10000-1000pic2.npz", f"{p}/10000-1000pic3.npz", f"{p}/10000-1000pic4.npz"],
     [f"{p}/11000-1000pic1.npz", f"{p}/11000-1000pic2.npz", f"{p}/11000-1000pic3.npz", f"{p}/11000-1000pic4.npz"]
 ]
 
+VIDEOS
+
+p = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/chrome_traces/training/predictions/vids/ones-scale"
+
+predictionPaths = [
+    [f"{p}/2-1vid1.npz", f"{p}/2-1vid2.npz", f"{p}/2-1vid3.npz", f"{p}/2-1vid4.npz"],
+    [f"{p}/3-1vid1.npz", f"{p}/3-1vid2.npz", f"{p}/3-1vid3.npz", f"{p}/3-1vid4.npz"],
+    [f"{p}/4-1vid1.npz", f"{p}/4-1vid2.npz", f"{p}/4-1vid3.npz", f"{p}/4-1vid4.npz"],
+    [f"{p}/5-1vid1.npz", f"{p}/5-1vid2.npz", f"{p}/5-1vid3.npz", f"{p}/5-1vid4.npz"],
+    [f"{p}/6-1vid1.npz", f"{p}/6-1vid2.npz", f"{p}/6-1vid3.npz", f"{p}/6-1vid4.npz"],
+    [f"{p}/7-1vid1.npz", f"{p}/7-1vid2.npz", f"{p}/7-1vid3.npz", f"{p}/7-1vid4.npz"],
+    [f"{p}/8-1vid1.npz", f"{p}/8-1vid2.npz", f"{p}/8-1vid3.npz", f"{p}/8-1vid4.npz"],
+    [f"{p}/9-1vid1.npz", f"{p}/9-1vid2.npz", f"{p}/9-1vid3.npz", f"{p}/9-1vid4.npz"],
+    [f"{p}/10-1vid1.npz", f"{p}/10-1vid2.npz", f"{p}/10-1vid3.npz", f"{p}/10-1vid4.npz"],
+    [f"{p}/11-1vid1.npz", f"{p}/11-1vid2.npz", f"{p}/11-1vid3.npz", f"{p}/11-1vid4.npz"]
+]

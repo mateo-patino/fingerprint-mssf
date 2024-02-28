@@ -1,14 +1,14 @@
-p = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/chrome_traces/training/predictions/pics/tens-scale"
+p = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/chrome_traces/training/predictions/pics/thousands-scale"
 
 predictionPaths = [
-    [f"{p}/20-10pic1.npz", f"{p}/20-10pic2.npz", f"{p}/20-10pic3.npz", f"{p}/20-10pic4.npz"],
-    [f"{p}/30-10pic1.npz", f"{p}/30-10pic2.npz", f"{p}/30-10pic3.npz", f"{p}/30-10pic4.npz"],
-    [f"{p}/40-10pic1.npz", f"{p}/40-10pic2.npz", f"{p}/40-10pic3.npz", f"{p}/40-10pic4.npz"],
-    [f"{p}/50-10pic1.npz", f"{p}/50-10pic2.npz", f"{p}/50-10pic3.npz", f"{p}/50-10pic4.npz"],
-    [f"{p}/60-10pic1.npz", f"{p}/60-10pic2.npz", f"{p}/60-10pic3.npz", f"{p}/60-10pic4.npz"],
-    [f"{p}/70-10pic1.npz", f"{p}/70-10pic2.npz", f"{p}/70-10pic3.npz", f"{p}/70-10pic4.npz"],
-    [f"{p}/80-10pic1.npz", f"{p}/80-10pic2.npz", f"{p}/80-10pic3.npz", f"{p}/80-10pic4.npz"],
-    [f"{p}/90-10pic1.npz", f"{p}/90-10pic2.npz", f"{p}/90-10pic3.npz", f"{p}/90-10pic4.npz"],
-    [f"{p}/100-10pic1.npz", f"{p}/100-10pic2.npz", f"{p}/100-10pic3.npz", f"{p}/100-10pic4.npz"],
-    [f"{p}/110-10pic1.npz", f"{p}/110-10pic2.npz", f"{p}/110-10pic3.npz", f"{p}/110-10pic4.npz"]
+    [f"{p}/2000-1000pic1.npz", f"{p}/2000-1000pic2.npz", f"{p}/2000-1000pic3.npz", f"{p}/2000-1000pic4.npz"],
+    [f"{p}/3000-1000pic1.npz", f"{p}/3000-1000pic2.npz", f"{p}/3000-1000pic3.npz", f"{p}/3000-1000pic4.npz"],
+    [f"{p}/4000-1000pic1.npz", f"{p}/4000-1000pic2.npz", f"{p}/4000-1000pic3.npz", f"{p}/4000-1000pic4.npz"],
+    [f"{p}/5000-1000pic1.npz", f"{p}/5000-1000pic2.npz", f"{p}/5000-1000pic3.npz", f"{p}/5000-1000pic4.npz"],
+    [f"{p}/6000-1000pic1.npz", f"{p}/6000-1000pic2.npz", f"{p}/6000-1000pic3.npz", f"{p}/6000-1000pic4.npz"],
+    [f"{p}/7000-1000pic1.npz", f"{p}/7000-1000pic2.npz", f"{p}/7000-1000pic3.npz", f"{p}/7000-1000pic4.npz"],
+    [f"{p}/8000-1000pic1.npz", f"{p}/8000-1000pic2.npz", f"{p}/8000-1000pic3.npz", f"{p}/8000-1000pic4.npz"],
+    [f"{p}/9000-1000pic1.npz", f"{p}/9000-1000pic2.npz", f"{p}/9000-1000pic3.npz", f"{p}/9000-1000pic4.npz"],
+    [f"{p}/10000-1000pic1.npz", f"{p}/10000-1000pic2.npz", f"{p}/10000-1000pic3.npz", f"{p}/10000-1000pic4.npz"],
+    [f"{p}/11000-1000pic1.npz", f"{p}/11000-1000pic2.npz", f"{p}/11000-1000pic3.npz", f"{p}/11000-1000pic4.npz"]
 ]
