@@ -6,6 +6,9 @@ from sys import argv, exit
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Takes in two command-line arguments: [browser] [plot type]
+# To make it easier (or at least faster, maybe not simpler) to pass in the prediction files, I use a Python list
+# in readpredsin.py to organize the filenames into a 2d array that's compatible with this code. 
 
 testType = 'spearman' # CHANGE MANUALLY
 
@@ -31,15 +34,16 @@ def main():
             for i in range(len(true)):
                 f1_scores.append(f1_score(true[i], preds[i].argmax(axis=1)) * 100)
             scores.append(np.mean(f1_scores))
-            y_errors.append(round(sem(f1_scores), 2))
+            y_errors.append(round(sem(f1_scores), 2)) # I'M NO LONGER PLOTTING ERROR BARS, SO THIS LIST IS UNUSED
 
     xAxis = axis()
-
     scores = np.array(scores)
     xAxis = np.array(xAxis)
 
+    # I MANUALLY change these parameters below depending on what plot design I want
     upperBound = 10000 # Maximum difference used
     lowerBound = 0
+    automaticTicks = False
     xseq = np.linspace(lowerBound, upperBound, 500)
 
     # Fit y = B + Alog(x)
@@ -81,18 +85,16 @@ def main():
     plt.ylabel('F1 score (%)')
     plt.grid(axis='y')
     plt.ylim((0, 110))
-    plt.xlim((0, 11000))
+    plt.xlim((0, 11000)) # This xlim is also changed MANUALLY before each run
     plt.title(f'F1 accuracy score vs. image count difference - {browser.capitalize()} - 4 models per difference level')
     plt.yticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
 
-    # Add stats box
+    # Add stats box; location is also MANUALLY changed to fix xaxis scale
     plt.text(upperBound - 2500, 11, values, fontsize=12, bbox=bbox,
             horizontalalignment='left')
     
     # Set x-axis ticks
-    automaticTicks = False
-    if not automaticTicks:
-        plt.xticks(x_ticks())
+    if not automaticTicks: plt.xticks(x_ticks())
 
     plt.show()    
 
@@ -100,7 +102,7 @@ def logistic_function(x, L, k, x0):
    return L / (1 + np.exp(-k * (x - x0)))
 
 # I MANUALLY select the ticks and axis I want to use before running this script, so I just
-# change the return value of the two functions below. 
+# change the return value of the two functions below depending on what I'm plotting. 
 
 def x_ticks():
 
@@ -246,6 +248,7 @@ def stats(x, y):
     elif testType == 'pearson':
         r, p = pearsonr(x, y)
 
+    # I round p to different values depending on how small it is
     return round(r, 2), round(p, 8)
 
 
