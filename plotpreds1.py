@@ -41,8 +41,8 @@ def main():
     xAxis = np.array(xAxis)
 
     # I MANUALLY change these parameters below depending on what plot design I want
-    upperBound = 10000 # Maximum difference used
-    lowerBound = 0
+    upperBound = 1000 # Maximum difference used
+    lowerBound = 100
     automaticTicks = False
     xseq = np.linspace(lowerBound, upperBound, 500)
 
@@ -63,7 +63,6 @@ def main():
 
         popt, pcov = curve_fit(logistic_function, xAxis, scores, bounds=(0, [100.0, 1.0, 100.0]))
         L, k, x0 = popt
-        xseq = np.linspace(0, 10000, 1000)
         reg_y_axis = logistic_function(xseq, L, k, x0)
 
     if plotType != 'none': plt.plot(xseq, reg_y_axis, color='red', lw=2)
@@ -81,16 +80,16 @@ def main():
     bbox = dict(boxstyle='round', fc='blanchedalmond', ec='orange', alpha=0.5, pad=0.5)
 
     # Plot information
-    plt.xlabel('image count difference')
+    plt.xlabel('Image count difference')
     plt.ylabel('F1 score (%)')
     plt.grid(axis='y')
     plt.ylim((0, 110))
-    plt.xlim((0, 11000)) # This xlim is also changed MANUALLY before each run
-    plt.title(f'F1 accuracy score vs. image count difference - {browser.capitalize()} - 4 models per difference level')
+    plt.xlim((0, 1100)) # This xlim is also changed MANUALLY before each run
+    plt.title(f'F1 accuracy score vs. Image count difference - {browser.capitalize()} - 4 models per difference level')
     plt.yticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
 
     # Add stats box; location is also MANUALLY changed to fix xaxis scale
-    plt.text(upperBound - 2500, 11, values, fontsize=12, bbox=bbox,
+    plt.text(upperBound - 205, 11, values, fontsize=12, bbox=bbox,
             horizontalalignment='left')
     
     # Set x-axis ticks
@@ -118,7 +117,7 @@ def x_ticks():
 
     xTicks5 = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
     
-    return xTrial3
+    return xTicks2
     
 def axis():
 
@@ -237,7 +236,7 @@ def axis():
           50.85, 50.95, 51.05, 51.15
     ]
     
-    return xAxis3
+    return xAxis7
 
 # returns list with p-values and Pearson's r
 def stats(x, y):
@@ -249,7 +248,7 @@ def stats(x, y):
         r, p = pearsonr(x, y)
 
     # I round p to different values depending on how small it is
-    return round(r, 2), round(p, 8)
+    return round(r, 2), round(p, 2)
 
 
 if __name__ == "__main__":

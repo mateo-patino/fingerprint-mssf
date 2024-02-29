@@ -41,7 +41,11 @@ def main():
 
         # The average trace and its label share same index
         for index in range(len(averagedTraces)):
-            plt.plot(timeAxis, averagedTraces[index], label=traceLabels[index])
+            plt.plot(timeAxis, averagedTraces[index], label=traceLabels[index], lw=2)
+
+    if plotType == "scatter":
+        for index in range(len(averagedTraces)):
+            plt.scatter(timeAxis, averagedTraces[index], label=traceLabels[index], s=2)
     
     # Print descriptors; they help identifying which trace belongs to what browser if different browsers are plotted.
     # Averaged traces and their original pkl file paths are located at the same indexes. 
