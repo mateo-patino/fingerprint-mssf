@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>Extracurriculars</title>
+    </head>
+    <body>
+        <div class="bar">
+            <hr>
+            <button id ="btn_home" type="button" class="btn btn-primary">Home</button>
+            <button id="btn_facts" type="button" class="btn btn-primary">Facts</button>
+            <button id="btn_extracurriculars" type="button" class="btn btn-primary">Extracurriculars</button>
+            <button id="btn_hobbies" type="button" class="btn btn-primary">Hobbies</button>
+            <hr>
+        </div>
+        <div class="page_heading">
+            These are my top 3 favorite extracurriculars!
+        </div>
+        <ol>
+            <li class="ecs_li">
+                <img class="images" src="images/shapaper.png" alt="The cover of Mateo's SHA-256 published paper">
+                    <div class="text_box">
+                        During my sophomore year, I was reading a book about cryptocurrencies and stumbled upon the Secure Hashing Algorithm 256-bit (SHA-256).
+                        I enjoyed reading about this algorithm so much that I ended up writing a 28-page research paper about it and publishing it in the educational
+                        Mexican journal Vision Educativa IUNAES. My paper did not have a scientific/discovery-oriented goal but a pedagogical one: I realized
+                        there was very little literature about SHA-256 that a cryptography enthusiast without the expertise of an undegraduate or graduate
+                        degree could understand, so I decided to write a paper explaining the algorithm in the simplest yet most complete way possible by
+                        prioritizing its beginner-oriented delivery and language.
+                        You can download the paper <a href="https://anglodurango.edu.mx/web/content/18805?unique=0d7e8fb08de0f0bb218c78993f5b9c13e4e9276f&download=true">here</a>.
+                    </div>
+            </li>
+            <li class="ecs_li">
+                <img class="horizontal_images" src="images/database.png" alt="The main page of Mateo's school database">
+                <div class="text_box">
+                    Bogota's air quality is lousy. To raise awareness about this issue at my school, I partnered with two of my friends to build a web application
+                    that retrieves hourly air quality data from the World Air Quality Index Project's website and stores it in a free-access database. We aimed to use
+                    this database to create a historical record of Bogotá's and our school's air quality.
+                </div>
+            </li>
+            <li class="ecs_li">
+                <img class="horizontal_images" src="images/record.PNG" alt="A photo of Mateo recording his math videos">
+                <div class="text_box">
+                    Richard Feynman said that the best way to learn something is to teach it. I agree with him! A couple of years ago, I was incredibly bad at math,
+                    but I discovered that I was just being intellectually lazy and that I could become very proficient at math if I tried to teach it to others.
+                    Today, I run a small YouTube channel that I'm very proud of and that allows me to reinforce and organize my thoughts about many mathematical
+                    concepts in calculus, algebra, and more!
+                </div>
+            </li>
+        </ol>
+    </body>
+    <script>
+        const list = document.querySelectorAll(".btn.btn-primary");
+        const length = list.length;
+        for (let i = 0; i < length; i++) {
+            list[i].addEventListener('click', function () {
+                if (event.target.id === 'btn_home') {
+                    window.location.href = 'index.html'
+                }
+                else if (event.target.id === 'btn_facts') {
+                    window.location.href = 'facts.html'
+                }
+                else if (event.target.id === 'btn_extracurriculars') {
+                    window.location.href = 'extracurriculars.html'
+                }
+                else {
+                    window.location.href = 'hobbies.html'
+                }
+            });
+        }
+
+        let imageNum = 10
+        for (let i = 0; i < imageNum; i++)
+        {
+            let newImage = document.createElement('img');
+            newImage.src = 'images/image0.jpg';
+            document.querySelector('body').append(newImage); 
+        }
+    </script>
+</html>

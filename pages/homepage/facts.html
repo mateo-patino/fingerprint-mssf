@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>Facts</title>
+    </head>
+    <body>
+        <div class="bar">
+            <hr>
+            <button id ="btn_home" type="button" class="btn btn-primary">Home</button>
+            <button id="btn_facts" type="button" class="btn btn-primary">Facts</button>
+            <button id="btn_extracurriculars" type="button" class="btn btn-primary">Extracurriculars</button>
+            <button id="btn_hobbies" type="button" class="btn btn-primary">Hobbies</button>
+            <hr>
+        </div>
+        <div class="page_heading">
+            Here are some quick facts about me!
+        </div>
+        <ul>
+            <li class="facts_li">
+                <img class="images" src="images/shoulderhead.JPEG" alt="A photo of Mateo from the shoulders up. He looking hella handsome.">
+                My name is Mateo Patino Hasbon, and I was born in Bogota, Colombia.
+            </li>
+            <li class="facts_li">
+                <img class="images" src="images/mateoandoliver.jpg" alt="Mateo and his dog, Oliver">
+                As of the time I code this website, I'm 17! My birthday is on March 25.
+            </li>
+            <li class="facts_li">
+                <img class="images" src="images/mateohandoliver.JPG" alt="Mateo holds Oliver's paw">
+                I have a dog, Oliver! He's a 3-year-old Samoyed and sheds a lot.
+            </li>
+            <li class="facts_li">
+                <img class="images" src="images/fam.png" alt="Mateo's family">
+                I've lived my whole life with my mom, grandma, and Oliver. My mom is a doctor and my granny is retired. My father does
+                not live with us, but he's very cool and is always there for us. I also have little brother from my father's side.
+            </li>
+            <li class="facts_li">
+                <img class="images" src="images/oliveravocado.JPEG" alt="Oliver staring at an avocado">
+                Oliver loves avocados! In fact, he also loves cheese, bread, carrots, apples, and Greek yogurt.
+            </li>
+            <li class="facts_li">
+                <img class="images" src="images/hungergames.JPEG" alt="An image of the Hunger Games book.">
+                My favorite fiction trilogy is the Hunger Games. I'm particularly fond of the second book Catching Fire.
+            </li>
+            <li class="facts_li">
+                <img class="images" src="images/shirt.jpg" alt="Mateo's shirt about a math meme.">
+                <div>
+                    Don't be a jerk! This is the coolest piece of clothing I've got.
+                    You can get yours at Zach's and Jen's <a href="https://stemerch.com/">STEMerch</a> store!
+                    ("Jerk" is the name of the third derivative of position, which represents the rate of change
+                    of acceleration).
+                </div>
+            </li>
+        </ul>
+    <!--Assign a hyperlink to every button by changing the current window depending on the id of the clickec button-->
+    <script>
+        const list = document.querySelectorAll('.btn.btn-primary');
+        for (let i = 0; i < list.length; i++)
+        {
+            list[i].addEventListener('click', function() {
+            if (event.target.id === 'btn_home') {
+                window.location.href = 'index.html'
+            }
+            else if (event.target.id === 'btn_facts') {
+                window.location.href = 'facts.html'
+            }
+            else if (event.target.id === 'btn_extracurriculars') {
+                window.location.href = 'extracurriculars.html'
+            }
+            else if (event.target.id === 'btn_hobbies') {
+                window.location.href = 'hobbies.html'
+            }
+        });
+        }
+    </script>
+    </body>
+</html>

@@ -1,14 +1,7 @@
-from pickle import load
+from numpy import load
 
-name = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/firefox_traces/training/5s/100r/localhost_8000_200words.html.pkl"
+path = "/Users/mateopatinohasbon/Documents/bigger-fish-main/fingerprint-mssf/chrome_traces/training/predictions/vids/novid-index-chrome//novid-index1.npz"
 
-traces = list()
-with open(name, "rb") as f:
-    while True:
-        try:
-            trace, label = load(f)
-            traces.append(trace)
-        except EOFError:
-            break
+data = load(path)
 
-print(len(traces))
+print(data['domains'])
