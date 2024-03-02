@@ -43,9 +43,11 @@ def main():
 
         heights.append(np.mean(scores))
         error_bars.append(np.mean(errors))
+
+    # Implement a 1-sample ttest for each bar; the reference value should be 0.5 (random chance)
     
     # Define categories MANUALLY
-    xAxis = ['No video', '1 video (50 kB)', '10 videos (500 kB)']
+    xAxis = ['No words', '1k words (7 kB)', '10k words (70 kB)']
 
     # Print order files were opened; this order should ALWAYS match the order in 'xAxis'
     print()
